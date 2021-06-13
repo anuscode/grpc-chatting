@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+// import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package chat;
+
+service Chat {
+
+    rpc CreateChannel(CreateChannelRequest) returns (google.protobuf.Empty) {}
+
+    rpc ListChannels(ListChannelsRequest) returns (ListChannelsResponse) {}
+
+    rpc SendMessage(SendMessageRequest) returns (google.protobuf.Empty) {}
+
+    rpc Stream(StreamRequest) returns (stream StreamResponse) {}
+
+}
+
+message CreateChannelRequest {
+    Channel channel = 1;
+}
+
+message ListChannelsRequest {
+}
+
+message ListChannelsResponse {
+    repeated string channel_ids = 1;
+}
+
+message SendMessageRequest {
+    Message message = 1;
+}
+
+message StreamRequest {
+    string user_id = 1;
+    Channel channel = 2;
+}
+
+message StreamResponse {
+    Message message = 1;
+}
+
+message Channel {
+    string id = 1;
+    optional int64 created_at = 2;
+}
+
+message Message {
+    string channel_id = 1;
+    string user_id = 2;
+    string text = 3;
+    bool is_broadcast = 4;
+}

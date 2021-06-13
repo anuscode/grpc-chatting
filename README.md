@@ -10,10 +10,6 @@ $ pip install -r requirements.txt
 
 # 실행 방법
 
-사용자가 과제를 **실행** 할 수 있는 방법을 설명해 주세요.
-
-1. run with options
-
 ```
 서버 실행:
 $ python chat_server.py
